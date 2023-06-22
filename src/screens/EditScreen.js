@@ -5,16 +5,19 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import BlogPostForm from '../components/BlogPostForm';
 
 function EditScreen() {
+  const navigation = useNavigation();
   const route = useRoute();
   const id = route.params.id;
-  const { state } = useContext(BlogContext);
+  const { state, editBlogPost } = useContext(BlogContext);
   const blogPost = state.find((blogPost) => blogPost.id === id);
 
   return (
     <BlogPostForm
       initialValues={{ title: blogPost.title, content: blogPost.content }}
       onSubmit={(title, content) => {
-        console.log(title, content);
+        editBlogPost(id, title, content, () => {
+          navigation.goBack();
+        });
       }}
     />
   );
