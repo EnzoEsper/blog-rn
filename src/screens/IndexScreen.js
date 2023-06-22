@@ -8,7 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 function IndexScreen() {
   const navigation = useNavigation();
-  const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost } = useContext(BlogContext);
 
   navigation.setOptions({
     headerRight: () => (
@@ -18,7 +18,6 @@ function IndexScreen() {
 
   return (
     <View>
-      <Button title="Add Post" onPress={addBlogPost} />
       <FlatList
         data={state}
         keyExtractor={(blogPost) => blogPost.title}
