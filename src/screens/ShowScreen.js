@@ -1,13 +1,18 @@
 import { useRoute } from '@react-navigation/native';
+import { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Context as BlogContext } from '../context/BlogContext';
 
 function ShowScreen() {
   const route = useRoute();
   const id = route.params.id;
 
+  const { state } = useContext(BlogContext);
+  const blogPost = state.find((blogPost) => blogPost.id === id);
+
   return (
     <View>
-      <Text>Show Screen for post #{id}</Text>
+      <Text>{blogPost.title}</Text>
     </View>
   );
 }
