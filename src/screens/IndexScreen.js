@@ -4,10 +4,18 @@ import { Context as BlogContext } from '../context/BlogContext';
 import { FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign } from '@expo/vector-icons';
 
 function IndexScreen() {
   const navigation = useNavigation();
   const { state, addBlogPost, deleteBlogPost } = useContext(BlogContext);
+
+  navigation.setOptions({
+    headerRight: () => (
+      <AntDesign name="pluscircleo" size={24} color="black" onPress={() => navigation.navigate('Create')} />
+    ),
+  });
+
   return (
     <View>
       <Button title="Add Post" onPress={addBlogPost} />
