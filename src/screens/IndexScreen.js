@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Context as BlogContext } from '../context/BlogContext';
 import { FlatList } from 'react-native';
@@ -8,7 +8,11 @@ import { AntDesign } from '@expo/vector-icons';
 
 function IndexScreen() {
   const navigation = useNavigation();
-  const { state, deleteBlogPost } = useContext(BlogContext);
+  const { state, deleteBlogPost, getBlogPosts } = useContext(BlogContext);
+
+  useEffect(() => {
+    getBlogPosts();
+  }, []);
 
   navigation.setOptions({
     headerRight: () => (
