@@ -12,6 +12,14 @@ function IndexScreen() {
 
   useEffect(() => {
     getBlogPosts();
+
+    const listener = navigation.addListener('focus', () => {
+      getBlogPosts();
+    });
+
+    return () => {
+      listener.remove();
+    };
   }, []);
 
   navigation.setOptions({
